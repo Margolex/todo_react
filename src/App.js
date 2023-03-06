@@ -31,8 +31,6 @@ function App() {
     localStorage.setItem("todo", JSON.stringify(todo));
   };
 
-
-
   const delComplited = () => {
     setTodo(todo.filter((el) => el.isDone === false));
     localStorage.setItem("todo", JSON.stringify(todo));
@@ -47,9 +45,8 @@ function App() {
         } else {
           return el;
         }
-      })
-    );
-    localStorage.setItem("todo", JSON.stringify(todo));
+      }))
+      localStorage.setItem("todo", JSON.stringify(todo));
   };
 
   const deleteAll = () => {

@@ -26,7 +26,6 @@ export const Form = ({ addTask, setValue, todo, value, deleteTask, doneTask }) =
         {todo.map((el) => (
           <Task
             value={el.text}
-            key={el.id}
             id={el.id}
             deleteTask={deleteTask}
             doneTask={doneTask}
