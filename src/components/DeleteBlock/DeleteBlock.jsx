@@ -1,10 +1,10 @@
 import React from 'react'
 import s from "./DeleteBlock.module.css";
 
-export const DeleteBlock = ({ todo, deleteSelected, deleteAll }) => {
+export const DeleteBlock = ({ delComplited, deleteAll }) => {
   return (
     <div className={s.box_delete}>
-      <button className={s.delete_completed} onClick={() => deleteSelected()}>
+      <button className={s.delete_completed} onClick={() => delComplited()}>
         Удалить завершенные
       </button>
       <button className={s.delete_all} onClick={() => deleteAll()}>
