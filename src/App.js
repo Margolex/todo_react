@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DeleteBlock } from "./components/DeleteBlock/DeleteBlock";
 import { Form } from "./components/Form/Form";
 import { Wrapper } from "./components/Wrapper/Wrapper";
@@ -9,11 +9,14 @@ function App() {
   const [todo, setTodo] = useState(savedTodos);
   const [value, setValue] = useState("");
 
+  useEffect(() => {
+    localStorage.setItem("todo", JSON.stringify(todo));
+  }, [todo]);
+
   function addTask() {
-    
     if (value.length) {
-      
-      let newArr = [...todo,
+      let newArr = [
+        ...todo,
         {
           id: new Date().toISOString(),
           text: value,
@@ -22,18 +25,15 @@ function App() {
       ];
       setTodo(newArr);
       setValue("");
-       localStorage.setItem("todo", JSON.stringify(newArr));
     }
   }
 
   const deleteTask = (id) => {
     setTodo(todo.filter((el) => el.id !== id));
-    localStorage.setItem("todo", JSON.stringify(todo));
   };
 
   const delComplited = () => {
     setTodo(todo.filter((el) => el.isDone === false));
-    localStorage.setItem("todo", JSON.stringify(todo));
   };
 
   const doneTask = (id) => {
@@ -45,13 +45,12 @@ function App() {
         } else {
           return el;
         }
-      }))
-      localStorage.setItem("todo", JSON.stringify(todo));
+      })
+    );
   };
 
   const deleteAll = () => {
     setTodo([]);
-    localStorage.setItem("todo", JSON.stringify(todo));
   };
 
   return (
@@ -64,10 +63,7 @@ function App() {
         deleteTask={deleteTask}
         doneTask={doneTask}
       />
-      <DeleteBlock
-        delComplited={delComplited}
-        deleteAll={deleteAll}
-      />
+      <DeleteBlock delComplited={delComplited} deleteAll={deleteAll} />
     </Wrapper>
   );
 }
