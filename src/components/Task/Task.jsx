@@ -1,5 +1,6 @@
 import React from 'react'
 import s from './Task.module.css'
+import cross from './cross.png'
 
 export const Task = ({ value, deleteTask, id, doneTask, isDone }) => {
   return (
@@ -14,7 +15,7 @@ export const Task = ({ value, deleteTask, id, doneTask, isDone }) => {
         <p className={`${isDone ? s.box_task_done : null}`}>{value}</p>
       </label>
       <button className={s.cross} onClick={() => deleteTask(id)}>
-        ❌{/* <img className={s.img} src='/public/cross.png' alt="" /> */}
+        <img className={s.img} src={cross} alt="" />
       </button>
     </li>
   );
